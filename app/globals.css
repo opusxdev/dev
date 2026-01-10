@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color Palette - Neutral */
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a1a1a1;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-900: #171717;
+
+  /* Color Palette - Accent */
+  --color-orange-300: #ffb96d;
+  --color-orange-400: #ff8b1a;
+  --color-emerald-600: #009767;
+
+  /* Typography */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+
+  /* Spacing & Layout */
+  --spacing: 0.25rem;
+  --leading-relaxed: 1.625;
+  --tracking-tight: -0.025em;
+
+  /* Font Weights */
+  --font-weight-semibold: 600;
+  --font-weight-extrabold: 800;
+
+  /* Transitions */
+  --default-transition-duration: 0.15s;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Legacy variables for backward compatibility */
+  --background: #0a0a0a;
+  --foreground: #e5e5e5;
+  --accent: #ff8b1a;
+  --orange: #ff8b1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--text-sm);
+}
+
+/* Custom scrollbar styling - hidden */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* GitHub calendar scrollbar styling - hidden */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
