@@ -149,10 +149,10 @@ export default function GitHubCalendar({ username }: { username: string }) {
   const getColorClass = (intensity: number): string => {
     const colors = [
       "bg-[#1A1A1A] border border-[#2A2A2A]", // empty with subtle border
-      "bg-[#FF6B35] border border-[#2A2A2A] opacity-30",
-      "bg-[#FF6B35] border border-[#2A2A2A] opacity-50",
-      "bg-[#FF6B35] border border-[#2A2A2A] opacity-70",
-      "bg-[#FF6B35] border border-[#2A2A2A] opacity-100",
+      "bg-[#0F52BA] border border-[#2A2A2A] opacity-30",
+      "bg-[#0F52BA] border border-[#2A2A2A] opacity-50",
+      "bg-[#0F52BA] border border-[#2A2A2A] opacity-70",
+      "bg-[#0F52BA] border border-[#2A2A2A] opacity-100",
     ];
     return colors[intensity] || colors[0];
   };
@@ -219,55 +219,42 @@ export default function GitHubCalendar({ username }: { username: string }) {
   return (
     <div className="bg-[#1A1A1A] p-4 md:p-6 rounded font-mono">
       {/* Contribution graph */}
-      <div className="mb-4">
-        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-[#2A2A2A] scrollbar-track-[#1A1A1A] hover:scrollbar-thumb-[#FF6B35]">
-          <div className="inline-block">
-            <div className="flex gap-1 mb-2">
-              <div className="w-4"></div>
-              {months.map((month, idx) => {
-                const monthStart = new Date(selectedYear, idx, 1);
-                const weekStart = new Date(monthStart);
-                weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-                return (
-                  <div
-                    key={month}
-                    className="text-[#999] text-xs sm:text-sm font-normal"
-                    style={{ minWidth: `${(weeks.length / 12) * 11}px` }}
-                  >
-                    {month}
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex gap-1">
-              <div className="flex flex-col gap-1 text-[#999] text-xs sm:text-sm pr-2 font-normal">
-                {["", "Mon", "", "Wed", "", "Fri", ""].map((day, idx) => (
-                  <div key={idx} className="h-3 flex items-center">
-                    {day}
-                  </div>
-                ))}
+      <div className="mb-4 overflow-hidden">
+        <div className="w-full">
+          <div className="flex mb-1">
+            {months.map((month, idx) => {
+              const weeksPerMonth = weeks.length / 12;
+              const monthWidth = weeksPerMonth * 10.5;
+              return (
+                <div
+                  key={month}
+                  className="text-[#999] text-xs font-normal"
+                  style={{ width: `${monthWidth}px` }}
+                >
+                  {month}
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex gap-0.5">
+            {weeks.map((week, weekIdx) => (
+              <div key={weekIdx} className="flex flex-col gap-0.5">
+                {week.map((day, dayIdx) => {
+                  const intensity = getIntensity(day.count);
+                  return (
+                    <div
+                      key={`${weekIdx}-${dayIdx}`}
+                      className={`w-2 h-2 ${getColorClass(intensity)}`}
+                      title={
+                        day.date
+                          ? `${day.date}: ${day.count} contributions`
+                          : ""
+                      }
+                    />
+                  );
+                })}
               </div>
-              <div className="flex gap-1">
-                {weeks.map((week, weekIdx) => (
-                  <div key={weekIdx} className="flex flex-col gap-1">
-                    {week.map((day, dayIdx) => {
-                      const intensity = getIntensity(day.count);
-                      return (
-                        <div
-                          key={`${weekIdx}-${dayIdx}`}
-                          className={`w-3 h-3 ${getColorClass(intensity)}`}
-                          title={
-                            day.date
-                              ? `${day.date}: ${day.count} contributions`
-                              : ""
-                          }
-                        />
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -277,13 +264,13 @@ export default function GitHubCalendar({ username }: { username: string }) {
         <div className="text-[#E5E5E5] text-sm sm:text-base font-normal">
           {totalContributions} contributions in {selectedYear}
         </div>
-        <div className="flex items-center gap-2 text-[#999] text-xs sm:text-sm font-normal">
+        <div className="flex items-center gap-1 text-[#999] text-xs sm:text-sm font-normal">
           <span>Less</span>
-          <div className="flex gap-1">
+          <div className="flex gap-0.5">
             {[1, 2, 3, 4].map((level) => (
               <div
                 key={level}
-                className={`w-3 h-3 bg-[#FF6B35] border border-[#2A2A2A]`}
+                className={`w-2 h-2 bg-[#0F52BA] border border-[#2A2A2A]`}
                 style={{ opacity: level * 0.25 }}
               />
             ))}
@@ -298,8 +285,8 @@ export default function GitHubCalendar({ username }: { username: string }) {
           <button
             key={year}
             onClick={() => setSelectedYear(year)}
-            className={`hover:text-[#FF6B35] transition-colors ${
-              selectedYear === year ? "underline decoration-[#FF6B35] underline-offset-2" : ""
+            className={`hover:text-[#0F52BA] transition-colors ${
+              selectedYear === year ? "underline decoration-[#0F52BA] underline-offset-2" : ""
             }`}
           >
             {year}

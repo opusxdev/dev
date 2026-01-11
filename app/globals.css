@@ -12,8 +12,8 @@
   --color-neutral-900: #171717;
 
   /* Color Palette - Accent */
-  --color-orange-300: #ffb96d;
-  --color-orange-400: #ff8b1a;
+  --color-sapphire-300: #1B4F9E;
+  --color-sapphire-400: #0F52BA;
   --color-emerald-600: #009767;
 
   /* Typography */
@@ -40,8 +40,8 @@
   /* Legacy variables for backward compatibility */
   --background: #0a0a0a;
   --foreground: #e5e5e5;
-  --accent: #ff8b1a;
-  --orange: #ff8b1a;
+  --accent: #0F52BA;
+  --sapphire: #0F52BA;
 }
 
 * {

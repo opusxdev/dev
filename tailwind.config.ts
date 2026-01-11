@@ -15,8 +15,8 @@ const config: Config = {
         "neutral-500": "#737373",
         "neutral-600": "#525252",
         "neutral-900": "#171717",
-        "orange-300": "#ffb96d",
-        "orange-400": "#ff8b1a",
+        "sapphire-300": "#1B4F9E",
+        "sapphire-400": "#0F52BA",
         "emerald-600": "#009767",
       },
       fontSize: {

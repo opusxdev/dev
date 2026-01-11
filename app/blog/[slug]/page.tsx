@@ -45,7 +45,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       <div className="max-w-4xl mx-auto px-6 py-12">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-[#E5E5E5] hover:text-[#FF6B35] transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-[#E5E5E5] hover:text-[#0F52BA] transition-colors mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>back</span>
@@ -53,7 +53,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
         <article>
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-8 bg-[#FF6B35]"></div>
+            <div className="w-1 h-8 bg-gradient-to-b from-[#1B4F9E] to-[#0F52BA]"></div>
             <h1 className="text-2xl font-semibold text-[#E5E5E5]">{post.title}</h1>
           </div>
           <p className="text-sm text-[#999] mb-8">{post.date}</p>
